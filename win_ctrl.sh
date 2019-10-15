@@ -7,7 +7,7 @@
 #
 #         Author: zhaiyu, zhaiyu@qianxin.com
 #        Created: 2019-10-12 14:14:34
-#  Last Modified: 2019-10-15 15:51:02
+#  Last Modified: 2019-10-15 16:40:53
 #
 # =================================================================
 
@@ -34,6 +34,8 @@ elif [[ "$app" == "深度文件管理器" ]] ;then
 elif [[ "$app" == "蓝信" ]] ;then
     app="lxmainnew.exe.Wine"
     appRun="" # 蓝信暂时不知道
+    wmctrl -R "蓝信"
+    exit 0
 fi
 workspace=$(wmctrl -d | grep '*' | cut -d ' ' -f1)
 win_list=$(wmctrl -lx | grep $app | grep " $workspace " | awk '{print $1}')
