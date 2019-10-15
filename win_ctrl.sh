@@ -7,7 +7,7 @@
 #
 #         Author: zhaiyu, zhaiyu@qianxin.com
 #        Created: 2019-10-12 14:14:34
-#  Last Modified: 2019-10-12 16:30:04
+#  Last Modified: 2019-10-15 15:51:02
 #
 # =================================================================
 
@@ -37,15 +37,24 @@ elif [[ "$app" == "蓝信" ]] ;then
 fi
 workspace=$(wmctrl -d | grep '*' | cut -d ' ' -f1)
 win_list=$(wmctrl -lx | grep $app | grep " $workspace " | awk '{print $1}')
-findFlag=0
 
-for window in $win_list
-do
-    `wmctrl -ia $window`
-    findFlag=1
-    break
+IDs=$(xprop -root | grep "^_NET_CLIENT_LIST_STACKING" | tr "," " ")
+IDs=(${IDs##*#})
+for (( idx=${#IDs[@]}-1 ; idx>=0 ; idx-- )) ; do
+    for i in $win_list; do
+        if [ $((i)) = $((IDs[idx])) ]; then
+            wmctrl -ia $i
+            exit 0
+        fi
+    done
 done
 
-if [[ $findFlag == 0 ]] ;then
-    `$appRun`
-fi
+#for window in $win_list
+#do
+#    `wmctrl -ia $window`
+#    findFlag=1
+#    break
+#done
+#
+`$appRun`
+exit 0
