@@ -7,7 +7,7 @@
 #
 #         Author: zhaiyu, zhaiyu@qianxin.com
 #        Created: 2019-10-12 14:14:34
-#  Last Modified: 2019-10-15 16:40:53
+#  Last Modified: 2019-10-21 17:33:53
 #
 # =================================================================
 
@@ -36,9 +36,13 @@ elif [[ "$app" == "蓝信" ]] ;then
     appRun="" # 蓝信暂时不知道
     wmctrl -R "蓝信"
     exit 0
+elif [[ "$app" == "VirtualBox" ]] ;then
+    app="VirtualBox Machine.VirtualBox Machine"
+    app2="VirtualBox Manager.VirtualBox Manager"
+    appRun="virtualbox"
 fi
 workspace=$(wmctrl -d | grep '*' | cut -d ' ' -f1)
-win_list=$(wmctrl -lx | grep $app | grep " $workspace " | awk '{print $1}')
+win_list=$(wmctrl -lx | grep "$app" | grep " $workspace " | awk '{print $1}')
 
 IDs=$(xprop -root | grep "^_NET_CLIENT_LIST_STACKING" | tr "," " ")
 IDs=(${IDs##*#})
@@ -51,12 +55,20 @@ for (( idx=${#IDs[@]}-1 ; idx>=0 ; idx-- )) ; do
     done
 done
 
-#for window in $win_list
-#do
-#    `wmctrl -ia $window`
-#    findFlag=1
-#    break
-#done
-#
+if [[ "$app" == "VirtualBox Machine.VirtualBox Machine" ]]; then
+    win_list=$(wmctrl -lx | grep "$app2" | grep " $workspace " | awk '{print $1}')
+
+    IDs=$(xprop -root | grep "^_NET_CLIENT_LIST_STACKING" | tr "," " ")
+    IDs=(${IDs##*#})
+    for (( idx=${#IDs[@]}-1 ; idx>=0 ; idx-- )) ; do
+        for i in $win_list; do
+            if [ $((i)) = $((IDs[idx])) ]; then
+                wmctrl -ia $i
+                exit 0
+            fi
+        done
+    done
+fi
+
 `$appRun`
 exit 0
