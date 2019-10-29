@@ -7,7 +7,7 @@
 #
 #         Author: zhaiyu, zhaiyu@qianxin.com
 #        Created: 2019-10-12 14:14:34
-#  Last Modified: 2019-10-28 20:15:57
+#  Last Modified: 2019-10-29 15:05:15
 #
 # =================================================================
 
@@ -36,8 +36,6 @@ elif [[ "$app" == "深度文件管理器" ]] ;then
 elif [[ "$app" == "蓝信" ]] ;then
     app="lxmainnew.exe.Wine"
     appRun="" # 蓝信暂时不知道
-    wmctrl -R "蓝信"
-    exit 0
 elif [[ "$app" == "VirtualBox" ]] ;then
     app="VirtualBox Machine.VirtualBox Machine"
     app2="VirtualBox Manager.VirtualBox Manager"
