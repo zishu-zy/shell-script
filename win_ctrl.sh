@@ -5,9 +5,9 @@
 #       FileName: win_ctrl.sh
 #    Description: 窗口管理脚本
 #
-#         Author: zhaiyu, zhaiyu@qianxin.com
+#         Author: zishu, zishu@qq.com
 #        Created: 2019-10-12 14:14:34
-#  Last Modified: 2019-10-29 15:05:15
+#  Last Modified: 2019-11-05 16:35:24
 #
 # =================================================================
 

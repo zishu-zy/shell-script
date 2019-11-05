@@ -5,9 +5,9 @@
 #       FileName: win_size.sh
 #    Description: 改变窗口大小 - 左边半屏和右边半屏
 #
-#         Author: zhaiyu, zhaiyu@qianxin.com
+#         Author: zishu, zishu@qq.com
 #        Created: 2019-10-12 16:40:18
-#  Last Modified: 2019-10-28 20:31:39
+#  Last Modified: 2019-11-05 16:35:31
 #
 # =================================================================
 

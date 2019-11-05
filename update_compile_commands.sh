@@ -5,9 +5,9 @@
 #       FileName: update_compile_commands.sh
 #    Description: 更新compile_commands.json
 #
-#         Author: zhaiyu, zhaiyu@qianxin.com
+#         Author: zishu, zishu@qq.com
 #        Created: 2019-11-04 18:23:01
-#  Last Modified: 2019-11-04 20:25:46
+#  Last Modified: 2019-11-05 16:35:14
 #
 # =================================================================
 
