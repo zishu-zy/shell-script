@@ -7,7 +7,7 @@
 #
 #         Author: zishu, zishu@qq.com
 #        Created: 2019-10-12 14:14:34
-#  Last Modified: 2019-11-05 16:35:24
+#  Last Modified: 2019-11-05 19:37:29
 #
 # =================================================================
 
@@ -61,6 +61,19 @@ for (( idx=${#IDs[@]}-1 ; idx>=0 ; idx-- )) ; do
     done
 done
 
+# 蓝信的特殊处理
+if [[ "$app" == "lxmainnew.exe.Wine" ]]; then
+    win_lanxin=$(wmctrl -lx | grep "$app" | awk '{print $1}')
+    echo "蓝信：" $win_lanxin
+    echo "active_win:" $active_win
+    if [ $((win_lanxin)) = $((active_win)) ]; then
+        xdotool windowminimize $win_lanxin
+    else
+        wmctrl -R "蓝信"
+    fi
+fi
+
+# virtualBox 的特殊处理
 if [[ "$app" == "VirtualBox Machine.VirtualBox Machine" ]]; then
     win_list=$(wmctrl -lx | grep "$app2" | grep " $workspace " | awk '{print $1}')
     IDs=$(xprop -root | grep "^_NET_CLIENT_LIST_STACKING" | tr "," " ")
