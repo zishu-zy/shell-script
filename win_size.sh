@@ -7,7 +7,7 @@
 #
 #         Author: zishu, zishu@qq.com
 #        Created: 2019-10-12 16:40:18
-#  Last Modified: 2019-11-05 16:35:31
+#  Last Modified: 2019-11-22 09:49:59
 #
 # =================================================================
 
@@ -16,7 +16,7 @@ wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
 if [[ $com == "left" ]]; then
     wmctrl -r :ACTIVE: -e 0,0,0,960,1080
 elif [[ $com == "right" ]]; then
-    wmctrl -r :ACTIVE: -e 0,960,0,960,1380
+    wmctrl -r :ACTIVE: -e 0,960,0,960,1080
 fi
 
 #define the height in px of the top system-bar:
