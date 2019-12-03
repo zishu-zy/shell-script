@@ -7,7 +7,7 @@
 #
 #         Author: zishu, zishu@qq.com
 #        Created: 2019-10-12 14:14:34
-#  Last Modified: 2019-11-20 10:02:49
+#  Last Modified: 2019-12-03 14:54:02
 #
 # =================================================================
 
@@ -30,6 +30,9 @@ elif [[ "$app" == "QtCreator" ]] ;then
 elif [[ "$app" == "深度编辑器" ]] ;then
     app="deepin-editor.deepin-editor"
     appRun="deepin-editor"
+elif [[ "$app" == "notepadqq" ]] ;then
+    app="notepadqq-bin.Notepadqq"
+    appRun="notepadqq"
 elif [[ "$app" == "深度文件管理器" ]] ;then
     app="dde-file-manager.dde-file-manager"
     appRun="dde-file-manager"
