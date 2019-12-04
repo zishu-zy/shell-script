@@ -7,7 +7,7 @@
 #
 #         Author: zishu, zishu@qq.com
 #        Created: 2019-10-12 16:40:18
-#  Last Modified: 2019-12-04 11:02:59
+#  Last Modified: 2019-12-04 13:49:44
 #
 # =================================================================
 
@@ -20,14 +20,18 @@ active_win_name=`xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 
 wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
 
 if [[ $com == "left" ]]; then
-    if [[ ${active_win_name} =~ "深度" ]]; then
+    if [[ ${active_win_name} =~ "深度终端" ]]; then
         wmctrl -r :ACTIVE: -e 0,-50,-50,1060,1190
+    elif [[ ${active_win_name} =~ "深度文件管理器" ]]; then
+        wmctrl -r :ACTIVE: -e 0,-60,-44,1082,1200
     else
         wmctrl -r :ACTIVE: -e 0,0,0,960,1080
     fi
 elif [[ $com == "right" ]]; then
-    if [[ ${active_win_name} =~ "深度" ]]; then
+    if [[ ${active_win_name} =~ "深度终端" ]]; then
         wmctrl -r :ACTIVE: -e 0,910,-50,1060,1190
+    elif [[ ${active_win_name} =~ "深度文件管理器" ]]; then
+        wmctrl -r :ACTIVE: -e 0,901,-44,1082,1200
     else
         wmctrl -r :ACTIVE: -e 0,960,0,960,1080
     fi
