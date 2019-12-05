@@ -7,11 +7,11 @@
 #
 #         Author: zishu, zishu@qq.com
 #        Created: 2019-10-12 14:14:34
-#  Last Modified: 2019-12-03 14:54:02
+#  Last Modified: 2019-12-05 17:07:24
 #
 # =================================================================
 
-set -e
+# set -x
 
 app=$1
 appRun=""
@@ -97,5 +97,6 @@ if [[ "$app" == "VirtualBox Machine.VirtualBox Machine" ]]; then
     done
 fi
 
-`$appRun`
+# echo $appRun
+nohup $appRun >/dev/null 2>&1 &
 exit 0
