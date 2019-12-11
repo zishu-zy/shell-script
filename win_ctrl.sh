@@ -7,7 +7,7 @@
 #
 #         Author: zishu, zishu@qq.com
 #        Created: 2019-10-12 14:14:34
-#  Last Modified: 2019-12-05 17:07:24
+#  Last Modified: 2019-12-11 09:44:34
 #
 # =================================================================
 
@@ -15,6 +15,7 @@
 
 app=$1
 appRun=""
+
 if [[ "$app" == "chrome" ]]; then
     app="google-chrome.Google-chrome"
     appRun="/opt/google/chrome/chrome"
@@ -45,6 +46,7 @@ elif [[ "$app" == "VirtualBox" ]] ;then
     app2="VirtualBox Manager.VirtualBox Manager"
     appRun="virtualbox"
 fi
+
 workspace=$(wmctrl -d | grep '*' | cut -d ' ' -f1)
 win_list=$(wmctrl -lx | grep "$app" | grep " $workspace " | awk '{print $1}')
 active_win=$(xprop -root -f _NET_ACTIVE_WINDOW 0x " \$0\\n" _NET_ACTIVE_WINDOW | awk "{print \$2}")
@@ -65,11 +67,9 @@ for (( idx=${#IDs[@]}-1 ; idx>=0 ; idx-- )) ; do
     done
 done
 
-# 蓝信的特殊处理
-if [[ "$app" == "lxmainnew.exe.Wine" ]]; then
+# 蓝信的特殊处理 - 由于蓝信只能有一个，所以需要切换到对应的工作区
+if [[ "$app" == "LxMain.LxMain" ]]; then
     win_lanxin=$(wmctrl -lx | grep "$app" | awk '{print $1}')
-    echo "蓝信：" $win_lanxin
-    echo "active_win:" $active_win
     if [ $((win_lanxin)) = $((active_win)) ]; then
         xdotool windowminimize $win_lanxin
     else
