@@ -7,7 +7,7 @@
 #
 #         Author: zishu, zishu@qq.com
 #        Created: 2019-10-12 14:14:34
-#  Last Modified: 2019-12-11 09:44:34
+#  Last Modified: 2019-12-26 09:45:27
 #
 # =================================================================
 
@@ -39,7 +39,7 @@ elif [[ "$app" == "深度文件管理器" ]] ;then
     appRun="dde-file-manager"
 elif [[ "$app" == "蓝信" ]] ;then
     # app="lxmainnew.exe.Wine"
-    app="LxMain.LxMain"
+    app="lanxin.Lanxin"
     appRun="lanxin"
 elif [[ "$app" == "VirtualBox" ]] ;then
     app="VirtualBox Machine.VirtualBox Machine"
