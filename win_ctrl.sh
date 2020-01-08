@@ -7,11 +7,12 @@
 #
 #         Author: zishu, zishu@qq.com
 #        Created: 2019-10-12 14:14:34
-#  Last Modified: 2019-12-26 09:45:27
+#  Last Modified: 2020-01-08 19:47:20
 #
 # =================================================================
 
-# set -x
+set -x
+# 需要安装 wmctrl
 
 app=$1
 appRun=""
@@ -68,12 +69,12 @@ for (( idx=${#IDs[@]}-1 ; idx>=0 ; idx-- )) ; do
 done
 
 # 蓝信的特殊处理 - 由于蓝信只能有一个，所以需要切换到对应的工作区
-if [[ "$app" == "LxMain.LxMain" ]]; then
+if [[ "$app" == "lanxin.Lanxin" ]]; then
     win_lanxin=$(wmctrl -lx | grep "$app" | awk '{print $1}')
     if [ $((win_lanxin)) = $((active_win)) ]; then
         xdotool windowminimize $win_lanxin
     else
-        wmctrl -R "蓝信"
+        wmctrl -R "蓝信+"
     fi
 fi
 
