@@ -35,6 +35,9 @@ elif [[ "$app" == "深度编辑器" ]] ;then
 elif [[ "$app" == "notepadqq" ]] ;then
     app="notepadqq-bin.Notepadqq"
     appRun="notepadqq"
+elif [[ "$app" == "sublime" ]] ;then
+    app="sublime_text.Sublime_text"
+    appRun="/opt/sublime_text/sublime_text"
 elif [[ "$app" == "深度文件管理器" ]] ;then
     app="dde-file-manager.dde-file-manager"
     appRun="dde-file-manager"
