@@ -2,7 +2,7 @@
 
 # =================================================================
 #
-#       FileName: win_size.sh
+#       FileName: win_site.sh
 #    Description: 改变窗口大小 - 左边半屏和右边半屏
 #
 #         Author: zishu, zishu@qq.com
@@ -11,21 +11,22 @@
 #
 # =================================================================
 
+set -x
+
 com=$1
 
 # 获取当前激活窗口名称
 active_win_name=`xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2) _NET_WM_NAME`
+active_win_id=$(xprop -root -f _NET_ACTIVE_WINDOW 0x " \$0\\n" _NET_ACTIVE_WINDOW | awk "{print \$2}")
 
 SCREEN_WIDTH=$(xwininfo -root | awk '$1=="Width:" {print $2}')
+SCREEN_WIDTH=1920
 SCREEN_HEIGHT=$(xwininfo -root | awk '$1=="Height:" {print $2}')
-
-# 将最大化窗口还原，否则无法调整大小
-wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
 
 
 n_width=$(($SCREEN_WIDTH/2))
 n_height=$(($SCREEN_HEIGHT))
-if [[ $com == "left" ]]; then
+if [[ $com == "left_size" ]]; then
     n_x=0
     n_y=0
     if [[ ${active_win_name} =~ "深度终端" ]]; then
@@ -39,8 +40,10 @@ if [[ $com == "left" ]]; then
         n_width=$(($n_width+121))
         n_height=$(($n_height+120))
     fi
+    # 将最大化窗口还原，否则无法调整大小
+    wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
     wmctrl -r :ACTIVE: -e 0,$n_x,$n_y,$n_width,$n_height
-elif [[ $com == "right" ]]; then
+elif [[ $com == "right_size" ]]; then
     n_x=$n_width
     n_y=0
     if [[ ${active_win_name} =~ "深度终端" ]]; then
@@ -54,7 +57,25 @@ elif [[ $com == "right" ]]; then
         n_width=$(($n_width+121))
         n_height=$(($n_height+120))
     fi
+    # 将最大化窗口还原，否则无法调整大小
+    wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
     wmctrl -r :ACTIVE: -e 0,$n_x,$n_y,$n_width,$n_height
+elif [[ $com == "left_site" ]]; then
+    n_x=0
+    n_y=0
+    # 将最大化窗口还原，否则无法调整大小
+    wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+    wmctrl -r :ACTIVE: -e 0,$n_x,$n_y,$n_width,$n_height
+    wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+elif [[ $com == "right_site" ]]; then
+    n_x=$(($SCREEN_WIDTH*2))
+    n_y=0
+    # 将最大化窗口还原，否则无法调整大小
+    wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz
+    wmctrl -r :ACTIVE: -e 0,$n_x,$n_y,$n_width,$n_height
+    wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+elif [[ $com == "mini" ]]; then
+    xdotool windowminimize $active_win_id
 fi
 
 #define the height in px of the top system-bar:
